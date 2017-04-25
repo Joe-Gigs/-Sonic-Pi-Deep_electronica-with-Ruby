@@ -16,7 +16,6 @@ live_loop :kick do
 end
 
 live_loop :clap do
-  ##| sync :kick
   with_fx :lpf, cutoff: 100, mix: 1 do
     sleep 1
     sample clap
@@ -27,16 +26,16 @@ end
 live_loop :piano do
   with_fx :reverb, room: 0.50, mix: 1, amp: 1 do
     sync :kick
-    #sample piano, pan: 0.25, rate: 0.8, finish: 0.1, amp: 2.5, release: 2
+    sample piano, pan: 0.25, rate: 0.8, finish: 0.1, amp: 2.5, release: 2
     sleep 8
   end
 end
 
 
 live_loop :arpeggio do
-  with_fx :reverb, mix: 0.2 do
+  with_fx :reverb, mix: 0.5, room: 0.8 do
     with_synth :dark_ambience do
-      #play_pattern_timed scale(:cb2, :minor), 0.125, release: 0.1, amp: 5
+      play_pattern_timed scale(:cb2, :minor), 0.125, release: 0.1, amp: 4
       sleep 4
     end
   end
@@ -48,7 +47,6 @@ live_loop :hiss do
 end
 
 live_loop :hat do
-  ##| sync :kick
   with_fx :lpf do
     sleep 0.50
     sample :drum_cymbal_closed, release: 0.3
@@ -62,7 +60,7 @@ live_loop :second_synth do
   with_fx :reverb, mix: 0.4, room: 1 do
     with_synth :fm do
       notes = (ring 56, 70)
-      #play notes, attack: 2, sustain: 0.2, release: 2, amp: 0.4
+      #play notes, attack: 2, sustain: 0.2, release: 2, amp: 0.5
       sleep 16
     end
   end
@@ -75,7 +73,7 @@ live_loop :fx do
     with_fx :lpf, cutoff: 80, amp: 0.1 do
       with_fx :echo do
         with_synth :mod_fm do
-          play chord(56, :minor)
+          #play chord(56, :minor)
           sleep 1
         end
       end
@@ -85,7 +83,7 @@ end
 
 live_loop :human do
   with_fx :reverb do
-    sample vocal, amp: 0.06, rate: 0.8, start: 0.1, finish: 0.4
+    #sample vocal, amp: 0.04, rate: 0.8, start: 0.1, finish: 0.4
     sleep 16
   end
 end
